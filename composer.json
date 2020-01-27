@@ -1,0 +1,60 @@
+{
+  "name": "datashaman/tongs-sass",
+  "type": "library",
+  "description": "Sass plugin for Tongs",
+  "keywords": [
+    "laravel",
+    "ssg",
+    "static-site",
+    "static-site-generator",
+    "tongs",
+    "tongs-plugin"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marlin Forbes",
+      "email": "marlinf@datashaman.com"
+    }
+  ],
+  "require-dev": {
+    "datashaman/tongs": "@dev",
+    "phpunit/phpunit": "^8.5"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "extra": {
+    "tongs": {
+      "plugins": {
+        "sass": "Datashaman\\Tongs\\Plugins\\SassPlugin"
+      }
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Datashaman\\Tongs\\Plugins\\": "src/"
+    }
+  },
+  "repositories": {
+    "tongs": {
+      "type": "path",
+      "url": "../tongs",
+      "options": {
+        "symlink": true
+      }
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Datashaman\\Tongs\\Plugins\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  }
+}
