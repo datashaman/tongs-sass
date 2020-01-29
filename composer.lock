@@ -4,16 +4,22 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d45987489a898287c3de4b21f6cb6733",
+    "content-hash": "95116cc3840f302fa73ea9232d1776ea",
     "packages": [],
     "packages-dev": [
         {
             "name": "datashaman/tongs",
-            "version": "dev-master",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datashaman/tongs.git",
+                "reference": "c529fab8c057d903056f9ddb6691c5209cf01aba"
+            },
             "dist": {
-                "type": "path",
-                "url": "../tongs",
-                "reference": "7819438a4ffb6226ed241ab33440c6f053ee9768"
+                "type": "zip",
+                "url": "https://api.github.com/repos/datashaman/tongs/zipball/c529fab8c057d903056f9ddb6691c5209cf01aba",
+                "reference": "c529fab8c057d903056f9ddb6691c5209cf01aba",
+                "shasum": ""
             },
             "require": {
                 "erusev/parsedown": "^1.7",
@@ -52,11 +58,7 @@
                     "Datashaman\\Tongs\\": "app/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Datashaman\\Tongs\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -76,13 +78,7 @@
                 "static-site-generator",
                 "tongs"
             ],
-            "support": {
-                "issues": "https://github.com/datashaman/tongs/issues",
-                "source": "https://github.com/datashaman/tongs"
-            },
-            "transport-options": {
-                "symlink": true
-            }
+            "time": "2020-01-29T09:12:46+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -4211,9 +4207,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "datashaman/tongs": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

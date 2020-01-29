@@ -18,7 +18,7 @@
     }
   ],
   "require-dev": {
-    "datashaman/tongs": "@dev",
+    "datashaman/tongs": "1.*.*",
     "phpunit/phpunit": "^8.5"
   },
   "config": {

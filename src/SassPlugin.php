@@ -4,56 +4,38 @@ declare(strict_types=1);
 
 namespace Datashaman\Tongs\Plugins;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
 
 final class SassPlugin extends Plugin
 {
-    public function handle(Collection $files, callable $next): Collection
+    public function handle(array $files, callable $next): array
     {
-        $files = $files
-            ->mapWithKeys(
-                function (array $file, string $path) {
-                    $extension = File::extension($path);
+        $ret = [];
 
-                    if (in_array($extension, ['sass', 'scss'])) {
-                        return $this->transform($file, $path, $extension);
-                    }
+        foreach ($files as $path => $file) {
+            $extension = File::extension($path);
 
-                    return [$path => $file];
-                }
-            );
+            if (in_array($extension, ['sass', 'scss'])) {
+                $cmd = $this->command($file, $path);
 
-        return $next($files);
-    }
+                $process = new Process($cmd);
+                $process->mustRun();
 
-    /**
-     * @param array $file
-     * @param string $path
-     * @param string $extension
-     *
-     * @return array
-     */
-    protected function transform(array $file, string $path, string $extension): array
-    {
-        $cmd = $this->command($file, $path);
+                $path = preg_replace(
+                    "/\.${extension}$/",
+                    '.css',
+                    $path
+                );
 
-        $process = new Process($cmd);
-        $process->mustRun();
+                $file['contents'] = $process->getOutput();
+            }
 
-        $path = preg_replace(
-            "/\.${extension}$/",
-            '.css',
-            $path
-        );
+            $ret[$path] = $file;
+        }
 
-        $file['contents'] = $process->getOutput();
-
-        return [
-            $path => $file,
-        ];
+        return $next($ret);
     }
 
     /**
@@ -64,7 +46,7 @@ final class SassPlugin extends Plugin
      */
     protected function command(array $file, string $path): array
     {
-        $fullPath = $this->tongs()->source() . DIRECTORY_SEPARATOR . $path;
+        $fullPath = $this->tongs()->source()->path($path);
 
         $options = $this->options
             ->map(
