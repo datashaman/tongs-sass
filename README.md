@@ -1,16 +1,21 @@
-# tongs example plugin
+### tongs ssass plugin
 
-Template plugin for [Tongs](https://github.com/datashaman/tongs) static site generator.
+Render SASS files into CSS. A plugin for [Tongs](https://github.com/datashaman/tongs) static site generator.
 
-## setup
+For example:
 
-Create a project using this repository as a template:
+    {
+        "plugins": {
+            "sass": {
+                "outputStyle": "compressed"
+            }
+        }
+    }
 
-    composer create-project --prefer-dist datashaman/tongs-plugin example-plugin
+will invoke the following command:
 
-Run tests:
+    node-sass --output-style=compressed $sourcePath
 
-    cd example-plugin
-    vendor/bin/phpunit
+for any file ending in `.sass` and `.scss`. The source will be removed and replaced by a file with `.css` containing the rendered stylesheet.
 
-*nb* Remember to change the metadata in composer.json to match your preferred plugin name and class.
+Bear in mind that your `node_modules` folder will not exist in the cloud if you use a cloud-based _source_ disk. If your _source_ is local, no problem - use `npm` packages in the build.
